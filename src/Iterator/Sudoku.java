@@ -41,7 +41,7 @@ public class Sudoku implements Iterable<Integer>{
     }
 
     public Iterable<SudokuPart> getRows() {
-        class x implements Iterable<SudokuPart> {
+        return new Iterable<SudokuPart>() {
             @Override
             public Iterator<SudokuPart> iterator() {
                 return new Iterator<SudokuPart>() {
@@ -58,32 +58,25 @@ public class Sudoku implements Iterable<Integer>{
                     }
                 };
             }
-        }
-        return new x();
+        };
     }
 
     public Iterable<SudokuPart> getColumns() {
-        class x implements Iterable<SudokuPart> {
+        return () -> new Iterator<>() {
+            int j = 0;
+
             @Override
-            public Iterator<SudokuPart> iterator() {
-                return new Iterator<SudokuPart>() {
-                    int j = 0;
-
-                    @Override
-                    public boolean hasNext() {
-                        return j < size;
-                    }
-
-                    @Override
-                    public SudokuPart next() {
-                        List<Integer> result = Arrays.stream(board).map(ints -> ints[j]).collect(Collectors.toList());
-                        j++;
-                        return new SudokuPart(result);
-                    }
-                };
+            public boolean hasNext() {
+                return j < size;
             }
-        }
-        return new x();
+
+            @Override
+            public SudokuPart next() {
+                List<Integer> result = Arrays.stream(board).map(ints -> ints[j]).collect(Collectors.toList());
+                j++;
+                return new SudokuPart(result);
+            }
+        };
     }
 
     public boolean checkSudoku() {
