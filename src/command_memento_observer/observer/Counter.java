@@ -1,6 +1,6 @@
-package command.observer;
+package command_memento_observer.observer;
 
-import command.logic.BallPit;
+import command_memento_observer.logic.BallPit;
 
 import javax.swing.*;
 

@@ -1,9 +1,9 @@
-package command.logic;
+package command_memento_observer.logic;
 
 import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Ball {
+public class Ball implements Cloneable{
     public int x = 0;
     public int y = 0;
     public int ballWidth = 50;
@@ -37,5 +37,16 @@ public class Ball {
         if(y + ballHeight > max_y || y < 0) speedY *= (-1);
         x += speedX;
         y += speedY;
+    }
+
+    @Override
+    public Ball clone() {
+        try {
+            Ball clone = (Ball) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package command.logic;
+package command_memento_observer.logic;
 
 public class RemoveBallComand implements Command, Undoable {
     BallPit reciever;

@@ -1,4 +1,4 @@
-package command.logic;
+package command_memento_observer.logic;
 
 public class AddBallCommand implements Command, Undoable {
     Ball ball;

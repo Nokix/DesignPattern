@@ -1,4 +1,4 @@
-package command.observer;
+package command_memento_observer.observer;
 
 import java.util.ArrayList;
 import java.util.Collection;

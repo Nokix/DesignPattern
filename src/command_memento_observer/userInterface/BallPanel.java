@@ -1,6 +1,7 @@
-package command.userInterface;
+package command_memento_observer.userInterface;
 
-import command.logic.*;
+import command_memento_observer.logic.*;
+import command_memento_observer.observer.Publisher;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,13 @@ import java.awt.event.MouseListener;
 public class BallPanel extends JPanel implements MouseListener, KeyListener {
     BallPit ballPit;
     int max_x, max_y;
+    private Memento savepoint = null;
+
+    public Publisher<Void> getPublisher() {
+        return publisher;
+    }
+
+    private Publisher<Void> publisher;
 
     public BallPanel(BallPit ballPit, int max_x, int max_y) {
         addMouseListener(this);
@@ -49,6 +57,8 @@ public class BallPanel extends JPanel implements MouseListener, KeyListener {
             case 'b' -> command = new AddBallCommand(new Ball(Color.BLUE), this.ballPit);
             case 'r' -> command = new AddBallCommand(new Ball(), this.ballPit);
             case '-' -> command = new RemoveBallComand(this.ballPit);
+            case 's' -> save();
+            case 'l' -> restore();
             case 'z' -> command = new UndoCommand();
         }
         if (command instanceof Undoable) UndoCommand.addCommand((Undoable) command);
@@ -68,6 +78,24 @@ public class BallPanel extends JPanel implements MouseListener, KeyListener {
             command.execute();
             if (command instanceof Undoable) UndoCommand.addCommand((Undoable) command);
         }
+    }
+
+    class Memento {
+        BallPit ballPitM;
+
+        public Memento(BallPanel ballPanel) {
+            this.ballPitM = ballPit.clone();
+        }
+    }
+
+    public void save() {
+        this.savepoint = new Memento(this);
+    }
+
+    public void restore() {
+        UndoCommand.resetHistory();
+        this.ballPit = this.savepoint.ballPitM.clone();
+        this.ballPit.getPublisher().notifySubscribers(this.ballPit);
     }
 
     @Override

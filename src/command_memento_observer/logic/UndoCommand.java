@@ -1,4 +1,4 @@
-package command.logic;
+package command_memento_observer.logic;
 
 import java.util.Stack;
 
@@ -13,4 +13,9 @@ public class UndoCommand implements Command {
         if (commandStack.empty()) return;
         commandStack.pop().getReverseCommand().execute();
     }
+
+    public static void resetHistory() {
+        commandStack.clear();
+    }
+
 }

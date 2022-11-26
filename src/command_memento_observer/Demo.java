@@ -1,8 +1,8 @@
-package command;
+package command_memento_observer;
 
-import command.logic.BallPit;
-import command.observer.Counter;
-import command.userInterface.BallPanel;
+import command_memento_observer.logic.BallPit;
+import command_memento_observer.observer.Counter;
+import command_memento_observer.userInterface.BallPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +15,14 @@ public class Demo extends JFrame {
 
         BallPit ballPit = new BallPit();
         BallPanel ballPanel = new BallPanel(ballPit,800, 600);
+        ballPanel.setLayout(new BoxLayout(ballPanel, BoxLayout.Y_AXIS));
 
         Counter counter = new Counter();
         ballPit.getPublisher().subscribe(counter);
-        ballPanel.add(counter, BorderLayout.PAGE_END);
+        ballPanel.add(counter);
+
+        JLabel comp = new JLabel("Implement Me.");
+        ballPanel.add(comp);
 
         add(ballPanel);
     }
