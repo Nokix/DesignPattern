@@ -1,25 +1,16 @@
 package FactoryMethod.records;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AmazonRecordFactory implements RecordFactory{
+public class AmazonRecordFactory implements RecordFactory {
     @Override
     public AmazonRecord createRecord(String[] values) {
-        String pointsString = values[9].replaceFirst(",", "").replaceAll("\"", "");
-        long points = pointsString.isBlank() ? 0L : Long.parseLong(pointsString);
-        
-        String valueString = values[8].replaceFirst(",", "").replaceAll("\"", "");
-        long amount = valueString.isBlank() ?  0L: Long.parseLong(valueString);
-        
-        Date date;
-        try {
-            date = new SimpleDateFormat("dd.MM.yyyy").parse(values[1].replaceAll("\"", ""));
-        } catch (ParseException e) {
-            date = null;
-        }
-        
+        long points = getAmount(values[9]);
+        long amount = getAmount(values[8]);
+
+        Date date = getDate(values[1]);
+
         return new AmazonRecord(amount, date, points);
     }
+
 }

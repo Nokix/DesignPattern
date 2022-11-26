@@ -1,0 +1,5 @@
+"Auftragskonto";"Buchungstag";"Valutadatum";"Buchungstext";"Verwendungszweck";"Beguenstigter/Zahlungspflichtiger";"Kontonummer";"BLZ";"Betrag";"Waehrung";"Info"
+"DE64210501701003848031";"26.09.22";"26.09.22";"ONLINE-UEBERWEISUNG";"Strom";"Stadtwerke";"DE09*";"NOL*";"-80,00";"EUR";"Umsatz gebucht"
+"DE64210501701003848031";"08.09.22";"08.09.22";"ONLINE-UEBERWEISUNG";"Gas";"Stadwerke";"DE09*";"DAAEDEDDXXX";"-135,00";"EUR";"Umsatz gebucht"
+"DE64210501701003848031";"07.09.22";"07.09.22";"FOLGELASTSCHRIFT";"Kartenabrechnung";"LANDESBANK";"DE66*";"BEL*";"-179,58";"EUR";"Umsatz gebucht"
+"DE64210501701003848031";"01.09.22";"01.09.22";"ENTGELTABSCHLUSS";"Entgelte";"";"900*";"210*";"-1,60";"EUR";"Umsatz gebucht"
